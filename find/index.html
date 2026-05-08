@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쉼표를 발견하셨습니다 — WORKNIC</title>
+<meta name="description" content="당신이 발견한 쉼표의 기록 — 포천 WORKNIC">
+<meta property="og:title" content="쉼표를 발견하셨습니다">
+<meta property="og:description" content="포천 WORKNIC">
+
+<link href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-dark: #0A0A0A;
+    --bg-paper: #F4EFE6;
+    --bg-paper-soft: #FBF8F2;
+    --ink: #1A1A1A;
+    --ink-soft: #4A4A4A;
+    --ink-mute: #8A8A8A;
+    --gold: #BF8A30;
+    --line: rgba(26, 26, 26, 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    font-family: 'Spoqa Han Sans Neo', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--ink);
+    background: var(--bg-paper);
+    overflow-x: hidden;
+  }
+
+  body { font-weight: 400; line-height: 1.7; }
+
+  /* ============ SECTION 1: 침묵 ============ */
+  .section-silence {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: opacity 1.2s ease, visibility 1.2s ease;
+  }
+
+  .section-silence.fade-out {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .silence-comma {
+    font-family: 'Spoqa Han Sans Neo', sans-serif;
+    font-size: 180px;
+    font-weight: 300;
+    color: #F4EFE6;
+    line-height: 0.5;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: commaAppear 2.4s ease forwards;
+  }
+
+  @keyframes commaAppear {
+    0% { opacity: 0; transform: translateY(-20px); }
+    40% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ MAIN CONTENT ============ */
+  .main-content {
+    opacity: 0;
+    transition: opacity 1.5s ease 0.3s;
+  }
+
+  .main-content.show { opacity: 1; }
+
+  .container {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ============ SECTION 2: 발견 정보 ============ */
+  .section-discovery {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0 120px;
+  }
+
+  .discovery-comma {
+    font-size: 64px;
+    font-weight: 300;
+    line-height: 0.5;
+    color: var(--ink);
+    margin-bottom: 56px;
+    letter-spacing: -0.02em;
+  }
+
+  .discovery-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--ink-mute);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .discovery-headline {
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 40px;
+    letter-spacing: -0.02em;
+  }
+
+  .discovery-headline .number {
+    font-weight: 500;
+    color: var(--gold);
+  }
+
+  .discovery-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 13px;
+  }
+
+  .meta-label {
+    color: var(--ink-mute);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  .meta-value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .discovery-place-story {
+    margin-top: 48px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .place-story-text {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    font-weight: 300;
+    white-space: pre-line;
+  }
+
+  /* ============ SECTION 3: 쉼표 아카이브 ============ */
+  .section-archive {
+    padding: 120px 0;
+    background: var(--bg-paper-soft);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .archive-label {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--ink-mute);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .archive-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 80px;
+    letter-spacing: -0.01em;
+  }
+
+  .archive-flow {
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 80px;
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+
+  .archive-stream {
+    position: absolute;
+    width: 100%;
+    animation: streamUp 60s linear infinite;
+  }
+
+  .archive-item {
+    padding: 16px 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink-mute);
+    line-height: 1.7;
+    opacity: 0.5;
+    letter-spacing: -0.01em;
+  }
+
+  @keyframes streamUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+
+  /* 문장 입력 영역 */
+  .leave-comma {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .leave-comma-label {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+
+  .leave-comma-input {
+    width: 100%;
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    background: transparent;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.6;
+    resize: none;
+    transition: border-color 0.3s ease;
+    text-align: center;
+  }
+
+  .leave-comma-input:focus {
+    outline: none;
+    border-color: var(--ink);
+  }
+
+  .leave-comma-input::placeholder {
+    color: var(--ink-mute);
+    font-weight: 300;
+  }
+
+  .leave-comma-submit {
+    margin-top: 16px;
+    width: 100%;
+    padding: 16px;
+    background: var(--ink);
+    color: var(--bg-paper);
+    border: none;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    text-transform: uppercase;
+  }
+
+  .leave-comma-submit:hover { opacity: 0.85; }
+  .leave-comma-submit:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .leave-comma-thanks {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1.8;
+    padding: 20px 0;
+    display: none;
+  }
+
+  .leave-comma-thanks.show { display: block; }
+
+  /* ============ SECTION 4: 철학 ============ */
+  .section-philosophy {
+    padding: 160px 0;
+    text-align: center;
+  }
+
+  .philosophy-mark {
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 0.5;
+    color: var(--gold);
+    margin-bottom: 48px;
+  }
+
+  .philosophy-text {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .philosophy-text .em {
+    font-weight: 500;
+  }
+
+  .philosophy-author {
+    margin-top: 40px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+  }
+
+  /* ============ SECTION 5: 연결 ============ */
+  .section-connect {
+    padding: 100px 0 120px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .connect-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--ink-mute);
+    margin-bottom: 32px;
+    text-transform: uppercase;
+  }
+
+  .connect-text {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    margin-bottom: 48px;
+  }
+
+  .connect-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .connect-link {
+    display: block;
+    padding: 18px 24px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+
+  .connect-link:hover {
+    background: var(--ink);
+    color: var(--bg-paper);
+  }
+
+  .connect-link.primary {
+    background: var(--ink);
+    color: var(--bg-paper);
+  }
+
+  .connect-link.primary:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    padding: 60px 0 80px;
+    text-align: center;
+    background: var(--bg-paper-soft);
+  }
+
+  .footer-comma {
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 0.5;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .footer-text {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: var(--ink-mute);
+    line-height: 2;
+  }
+
+  /* 모바일 최적화 */
+  @media (max-width: 480px) {
+    .silence-comma { font-size: 140px; }
+    .container { padding: 0 24px; }
+    .discovery-headline { font-size: 24px; }
+    .archive-title { font-size: 20px; }
+    .philosophy-text { font-size: 19px; }
+    .section-philosophy { padding: 120px 0; }
+    .section-discovery { padding: 60px 0 100px; }
+    .section-archive { padding: 100px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. 침묵 ============ -->
+<div class="section-silence" id="silenceSection">
+  <div class="silence-comma">,</div>
+</div>
+
+<!-- ============ MAIN ============ -->
+<main class="main-content" id="mainContent">
+
+  <!-- 2. 발견 정보 -->
+  <section class="section-discovery">
+    <div class="container">
+      <div class="discovery-comma">,</div>
+
+      <div class="discovery-label">YOU FOUND A COMMA</div>
+
+      <h1 class="discovery-headline">
+        당신이 발견한 쉼표는<br>
+        포천의 <span class="number" id="commaNumber">32</span>번째 쉼표입니다.
+      </h1>
+
+      <div class="discovery-meta">
+        <div class="meta-row">
+          <span class="meta-label">LOCATION</span>
+          <span class="meta-value" id="locationName">포천 화현면</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">DATE</span>
+          <span class="meta-value" id="discoveryDate">2026. 05. 08</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">TIME</span>
+          <span class="meta-value" id="discoveryTime">19:42</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">ORDER</span>
+          <span class="meta-value" id="discoveryOrder">오늘의 27번째 발견</span>
+        </div>
+      </div>
+
+      <div class="discovery-place-story">
+        <p class="place-story-text" id="placeStory">이 쉼표는 화현면의 작은 골목 어귀에 놓여 있습니다.
+하루에 몇 번, 누군가 이곳을 지나며 잠시 멈춥니다.
+당신도 그 중 한 사람입니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 쉼표 아카이브 -->
+  <section class="section-archive">
+    <div class="container">
+      <div class="archive-label">COMMA ARCHIVE</div>
+      <h2 class="archive-title">
+        이전에 이곳을 지나간<br>
+        사람들이 남긴 쉼표
+      </h2>
+
+      <div class="archive-flow">
+        <div class="archive-stream" id="archiveStream"></div>
+      </div>
+
+      <div class="leave-comma" id="leaveCommaBox">
+        <p class="leave-comma-label">
+          당신의 쉼표를 한 문장으로 남겨보세요.<br>
+          이름은 묻지 않습니다.
+        </p>
+        <textarea
+          class="leave-comma-input"
+          id="commaInput"
+          placeholder="오늘 비가 와서 우산을 두고 왔다."
+          rows="2"
+          maxlength="60"
+        ></textarea>
+        <button class="leave-comma-submit" id="commaSubmit">남기고 가기</button>
+      </div>
+
+      <div class="leave-comma-thanks" id="commaThanks">
+        ,<br><br>
+        당신의 쉼표가 이곳에 남았습니다.<br>
+        다음 사람이 이 자리를 지나며<br>
+        당신의 문장을 만나게 됩니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 철학 -->
+  <section class="section-philosophy">
+    <div class="container">
+      <div class="philosophy-mark">,</div>
+      <p class="philosophy-text">
+        도구를 고르는 기준은,<br>
+        결국 <span class="em">삶의 태도</span>입니다.
+      </p>
+      <div class="philosophy-author">— 포천, WORKNIC</div>
+    </div>
+  </section>
+
+  <!-- 5. 연결 -->
+  <section class="section-connect">
+    <div class="container">
+      <div class="connect-label">CONNECT</div>
+      <p class="connect-text">
+        워크닉은 도구를 통해<br>
+        삶의 태도를 전하는 브랜드입니다.<br>
+        포천에서 당신을 기다립니다.
+      </p>
+
+      <div class="connect-links">
+        <a href="https://instagram.com/worknic_official" class="connect-link primary" target="_blank" rel="noopener">
+          INSTAGRAM @WORKNIC
+        </a>
+        <a href="https://comma.worknic.co.kr" class="connect-link" target="_blank" rel="noopener">
+          WORKNIC 알아보기
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-comma">,</div>
+    <div class="footer-text">
+      WORKNIC<br>
+      포천시 화현면 화동로348번길 5-1
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const commaId = params.get('id') || '032';
+  const locationCode = params.get('loc') || 'hwahyeon';
+
+  const locationMap = {
+    'hwahyeon': {
+      name: '포천 화현면',
+      story: '이 쉼표는 화현면의 작은 골목 어귀에 놓여 있습니다.\n하루에 몇 번, 누군가 이곳을 지나며 잠시 멈춥니다.\n당신도 그 중 한 사람입니다.'
+    },
+    'ildong': {
+      name: '포천 일동면',
+      story: '일동의 길목, 사람들이 가장 많이 스치는 자리입니다.\n바쁜 걸음 사이에서 이 쉼표를 발견한 당신은,\n조금 다른 속도로 걷고 있는 사람입니다.'
+    },
+    'idong': {
+      name: '포천 이동면',
+      story: '이동면의 한 귀퉁이.\n이곳을 발견하는 사람은 많지 않습니다.\n당신은 잠시 멈출 줄 아는 사람입니다.'
+    },
+    'sinbuk': {
+      name: '포천 신북면',
+      story: '신북면의 길 어귀에서, 많은 사람이 그저 지나갑니다.\n그 중 잠시 시선을 멈춘 당신께,\n이 쉼표를 드립니다.'
+    },
+    'worknic': {
+      name: '포천 WORKNIC',
+      story: '워크닉의 입구, 당신이 지금 서 있는 자리입니다.\n안으로 들어오시면, 또 다른 쉼표들이 당신을 기다립니다.'
+    }
+  };
+
+  const location = locationMap[locationCode] || locationMap['hwahyeon'];
+
+  document.getElementById('commaNumber').textContent = parseInt(commaId, 10);
+  document.getElementById('locationName').textContent = location.name;
+  document.getElementById('placeStory').textContent = location.story;
+
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  const hh = String(now.getHours()).padStart(2, '0');
+  const min = String(now.getMinutes()).padStart(2, '0');
+  document.getElementById('discoveryDate').textContent = `${yyyy}. ${mm}. ${dd}`;
+  document.getElementById('discoveryTime').textContent = `${hh}:${min}`;
+
+  const orderToday = Math.floor(Math.random() * 30) + 5;
+  document.getElementById('discoveryOrder').textContent = `오늘의 ${orderToday}번째 발견`;
+
+  setTimeout(() => {
+    document.getElementById('silenceSection').classList.add('fade-out');
+    document.getElementById('mainContent').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('silenceSection').style.display = 'none';
+    }, 1200);
+  }, 3000);
+
+  const sampleCommas = [
+    '오늘 비가 와서 우산을 두고 왔다.',
+    '아버지의 망치를 오랜만에 꺼냈다.',
+    '걷다가 처음 보는 골목을 발견했다.',
+    '잠시, 아무 생각도 하지 않았다.',
+    '오래된 도구의 손잡이가 따뜻했다.',
+    '이 길을 지나간 게 몇 번째일까.',
+    '하루 중 가장 조용한 시간이었다.',
+    '바람의 방향이 바뀌었다.',
+    '아무에게도 말하지 않은 일이 있다.',
+    '오늘은 천천히 걷기로 했다.',
+    '낡은 것이 새 것보다 좋아질 때가 있다.',
+    '쉼표는 끝이 아니라 흐름이다.',
+    '오래 쓴 것에는 시간이 묻어 있다.',
+    '돌아가는 길이 더 길게 느껴졌다.',
+    '문득, 어머니가 떠올랐다.'
+  ];
+
+  const stream = document.getElementById('archiveStream');
+  const allCommas = [...sampleCommas, ...sampleCommas];
+  allCommas.forEach(text => {
+    const item = document.createElement('div');
+    item.className = 'archive-item';
+    item.textContent = text;
+    stream.appendChild(item);
+  });
+
+  // ⚠️ 추후 Google Apps Script 엔드포인트 입력
+  const SHEETS_ENDPOINT = '';
+
+  const submitBtn = document.getElementById('commaSubmit');
+  const inputBox = document.getElementById('commaInput');
+  const leaveBox = document.getElementById('leaveCommaBox');
+  const thanksBox = document.getElementById('commaThanks');
+
+  submitBtn.addEventListener('click', async () => {
+    const text = inputBox.value.trim();
+    if (!text) {
+      inputBox.focus();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '남기는 중...';
+
+    try {
+      if (SHEETS_ENDPOINT) {
+        await fetch(SHEETS_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            comma_id: commaId,
+            location: locationCode,
+            text: text,
+            timestamp: now.toISOString()
+          })
+        });
+      }
+      setTimeout(() => {
+        leaveBox.style.display = 'none';
+        thanksBox.classList.add('show');
+      }, 600);
+    } catch (err) {
+      console.error('Submit error:', err);
+      leaveBox.style.display = 'none';
+      thanksBox.classList.add('show');
+    }
+  });
+
+  inputBox.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      submitBtn.click();
+    }
+  });
+</script>
+
+</body>
+</html>
